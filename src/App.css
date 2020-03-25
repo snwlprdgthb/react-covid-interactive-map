@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.div-map {
+  width: 1500px;
+  height: 750px;
+}
+
+.customeTheme {
+  color: red !important;
+  background-color: black !important;
+}

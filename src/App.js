@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { loadCountries, setCountry } from "./actions/actions";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import MapComponent from "./Map/MapComponent";
+
+class App extends Component {
+  componentDidMount() {
+    this.props.loadCountries();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <MapComponent setCountry={setCountry} />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  loadCountries: () => dispatch(loadCountries()),
+  setCountry: payload => dispatch(setCountry(payload))
+});
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(App);
